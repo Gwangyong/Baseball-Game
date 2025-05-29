@@ -6,11 +6,11 @@ class BasebollGame {
     // MARK: - 전체 흐름 시작
     func start() {
         let answer = makeAnswer() // 정답 값
-
+        
         while true {
             let input = getInput() // 내가 입력한 값
             let result = check(answer, input)
-
+            
             showResult(strike: result.strike, ball: result.ball)
             if result.strike == 3 {
                 break
@@ -28,22 +28,30 @@ class BasebollGame {
     // MARK: - 정답 입력
     func getInput() -> [Int] {
         while true {
-            let input = readLine() ?? ""
-            let inputNumbers = input.compactMap { Int(String($0)) }
+            let input = readLine() ?? "" // String 타입
+            let inputValidator = inputValidator(input)
             
-            // 예외
-            guard inputNumbers.count == 3 else { // 세 자리 숫자가 아닐 경우
-                print("올바르지 않은 입력값입니다")
-                continue
+            if let number = inputValidator {
+                return number
             }
-            
-            guard Set(inputNumbers).count == 3 else { // 중복된 값이 있을 경우
-                print("올바르지 않은 입력값입니다")
-                continue
-            }
-            
-            return inputNumbers
         }
+    }
+    
+    func inputValidator(_ input: String) -> [Int]? {
+        let inputNumbers = input.compactMap { Int(String($0)) }
+        
+        // 예외
+        guard inputNumbers.count == 3 else { // 세 자리 숫자가 아닐 경우
+            print("입력하신 숫자가 세 자리 숫자가 아닙니다. 세 자리 숫자를 입력해주세요.")
+            return nil // return이 nil이면, getInput() 함수의 if let을 통과 못하기에 while true 루프 계속됨
+        }
+        
+        guard Set(inputNumbers).count == 3 else { // 중복된 값이 있을 경우
+            print("중복된 숫자가 있습니다. 중복되지 않은 숫자를 입력해주세요.")
+            return nil
+        }
+        
+        return inputNumbers
     }
     
     // MARK: - 결과 판정
