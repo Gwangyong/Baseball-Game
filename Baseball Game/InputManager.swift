@@ -33,4 +33,11 @@ final class InputManager {
         }
         return inputNumbers
     }
+    
+    // MARK: - 메뉴 값 입력
+    static func getMenuSelection() -> Int {
+        let getMenuNumber = readLine()!
+        return Int(getMenuNumber)!
+        // 예외처리 만들 예정
+    }
 }
