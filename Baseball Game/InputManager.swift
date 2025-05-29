@@ -31,6 +31,12 @@ final class InputManager {
             print("중복된 숫자가 있습니다. 중복되지 않은 숫자를 입력해주세요.")
             return nil
         }
+        
+        guard inputNumbers[0] != 0 else { // 첫 번째에 0이 오지 않음
+            print("첫 번째 숫자는 0이 올 수 없습니다. 다시 입력해주세요.")
+            return nil
+        }
+        
         return inputNumbers
     }
     

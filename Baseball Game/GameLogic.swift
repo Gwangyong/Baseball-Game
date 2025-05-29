@@ -33,7 +33,7 @@ final class GameLogic {
     // MARK: - 결과값 출력
     static func printResult(strike: Int, ball: Int) {
         if strike == 3 {
-            print("\(strike)스트라이크! 축하드립니다!")
+            print("\(strike)스트라이크!")
         }
         
         else if ball == 3 {

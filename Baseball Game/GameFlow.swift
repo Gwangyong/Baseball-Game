@@ -25,7 +25,7 @@ final class GameFlow {
                 print("기록 보기 구현 예정")
             case 3:
                 print("게임을 종료합니다.")
-                break
+                return
             default:
                 print("잘못된 입력입니다.")
             }
@@ -38,12 +38,13 @@ final class GameFlow {
         let answer = GameLogic.makeAnswer() // 정답 값
 
         while true {
-            let userInput = InputManager.getInput() // 유저 입력 값
-            let result = GameLogic.compareAnswer(answer, userInput) // 결과 판정
-
+            let input = InputManager.getInput() // 유저 입력 값
+            let result = GameLogic.compareAnswer(answer, input) // 결과 판정
             GameLogic.printResult(strike: result.strike, ball: result.ball) // 결과값 출력
+            
             if result.strike == 3 {
-                start()
+                print("정답입니다! 게임을 종료하고 메뉴로 돌아갑니다.")
+                return
             }
         }
     }
