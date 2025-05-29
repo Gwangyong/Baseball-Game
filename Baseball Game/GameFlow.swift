@@ -22,7 +22,7 @@ final class GameFlow {
             case 1:
                 run()
             case 2:
-                print("기록 보기 구현 예정")
+                GameRecordManager.show()
             case 3:
                 print("게임을 종료합니다.")
                 return
@@ -34,16 +34,20 @@ final class GameFlow {
     
     // MARK: - 게임 실행
     func run() {
+        var tryCount: Int = 0
         print("게임이 시작되었습니다. 3자리 숫자를 입력해주세요.")
         let answer = GameLogic.makeAnswer() // 정답 값
 
         while true {
             let input = InputManager.getInput() // 유저 입력 값
+            tryCount += 1
             let result = GameLogic.compareAnswer(answer, input) // 결과 판정
             GameLogic.printResult(strike: result.strike, ball: result.ball) // 결과값 출력
             
             if result.strike == 3 {
                 print("정답입니다! 게임을 종료하고 메뉴로 돌아갑니다.")
+                let record = GameRecord(tryCount: tryCount)
+                GameRecordManager.add(record)
                 return
             }
         }
