@@ -42,8 +42,21 @@ final class InputManager {
     
     // MARK: - 메뉴 값 입력
     static func getMenuSelection() -> Int {
-        let getMenuNumber = readLine()!
-        return Int(getMenuNumber)!
-        // 예외처리 만들 예정
+        while true {
+            let input = readLine() ?? ""
+            if let menuNumber = validateMenuSelection(input) {
+                return menuNumber
+            }
+        }
+    }
+    
+    // MARK: - 메뉴 값 입력 검증
+    static func validateMenuSelection(_ input: String) -> Int? {
+        // [1, 2, 3] 배열에 넣어놓고, 입력값이 contains에 있나 보고,
+        guard let number = Int(input), (1...3).contains(number) else { // 앞 조건 성공 -> 뒷 조건 평가
+            print("올바른 숫자를 입력해주세요!")
+            return nil
+        }
+        return number
     }
 }
