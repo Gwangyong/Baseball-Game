@@ -9,6 +9,7 @@
 
 ## ⚾️ Baseball-Game 파일 구성
 
+```
 BaseballGame/
 │
 ├── main.swift               // 프로그램 시작 지점, GameFlow.start() 호출
@@ -16,5 +17,5 @@ BaseballGame/
 ├── GameLogic.swift          // 정답 생성, 사용자 입력과 비교, 결과 출력
 ├── GameRecordManager.swift  // 게임 기록 저장 및 출력
 ├── InputManager.swift       // 사용자 입력 처리 (메뉴 선택, 정답 숫자 입력 및 예외 처리)
-
+```
 
