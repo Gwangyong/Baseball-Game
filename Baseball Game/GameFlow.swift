@@ -9,8 +9,6 @@ final class GameFlow {
     
     // MARK: - 메뉴 목록부터 시작
     func start() {
-        // 첫 방문이면 환영 인사
-        // 첫 클리어 이후라면, 다른 인삿말 띄우도록
         while true {
             print("""
             원하시는 번호를 입력해주세요.
@@ -47,7 +45,7 @@ final class GameFlow {
             if result.strike == 3 {
                 print("정답입니다! 게임을 종료하고 메뉴로 돌아갑니다.")
                 let record = GameRecord(tryCount: tryCount)
-                GameRecordManager.add(record)
+                GameRecordManager.add(record) // 시도한 횟수 기록
                 return
             }
         }

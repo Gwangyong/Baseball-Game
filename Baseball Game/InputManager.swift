@@ -6,10 +6,10 @@
 //
 
 final class InputManager {
-    // MARK: - 정답 입력
+    // MARK: - 사용자 입력 처리
     static func getInput() -> [Int] {
         while true {
-            let input = readLine() ?? "" // String 타입
+            let input = readLine() ?? ""
             let validated = validateInput(input)
             
             if let numbers = validated {
@@ -18,13 +18,13 @@ final class InputManager {
         }
     }
     
-    // MARK: - 입력 검증
+    // MARK: - 사용자 입력 검증
     static func validateInput(_ input: String) -> [Int]? {
         let inputNumbers = input.compactMap { Int(String($0)) }
         
         guard inputNumbers.count == 3 else { // 세 자리 숫자가 아닐 경우
             print("입력하신 숫자가 세 자리 숫자가 아닙니다. 세 자리 숫자를 입력해주세요.")
-            return nil // return이 nil이면, getInput() 함수의 if let을 통과 못하기에 while true 루프 계속됨
+            return nil
         }
         
         guard Set(inputNumbers).count == 3 else { // 중복된 값이 있을 경우
@@ -52,7 +52,6 @@ final class InputManager {
     
     // MARK: - 메뉴 값 입력 검증
     static func validateMenuSelection(_ input: String) -> Int? {
-        // [1, 2, 3] 배열에 넣어놓고, 입력값이 contains에 있나 보고,
         guard let number = Int(input), (1...3).contains(number) else { // 앞 조건 성공 -> 뒷 조건 평가
             print("올바른 숫자를 입력해주세요!")
             return nil

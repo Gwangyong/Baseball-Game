@@ -9,6 +9,7 @@ final class GameLogic {
 
     // MARK: - 랜덤 값 생성
     static func makeAnswer() -> [Int] {
+        // first는 1~9중 하나, rest는 0~9중 두개. first + rest 합쳐서 처음에 0이 오지 않고 중복되지 않는 랜덤 값 3개 생성
         let first = (1...9).shuffled().first!
         let rest = Array((0...9).filter { $0 != first }.shuffled())
         return [first] + rest.prefix(2)
