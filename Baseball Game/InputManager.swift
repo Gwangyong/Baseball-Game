@@ -53,7 +53,7 @@ final class InputManager {
     // MARK: - 메뉴 값 입력 검증
     static func validateMenuSelection(_ input: String) -> Int? {
         guard let number = Int(input), (1...3).contains(number) else { // 앞 조건 성공 -> 뒷 조건 평가
-            print("올바른 숫자를 입력해주세요!")
+            print("올바르지 않은 선택입니다. 1번, 2번, 3번 중에서 하나를 입력해주세요.")
             return nil
         }
         return number
